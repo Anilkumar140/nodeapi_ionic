@@ -29,10 +29,6 @@ const getUserById = (request, response) => {
         if (error) {
             throw error
         }
-
-        if (results.rows == [] || results.rows == "" || results.rows == null) {
-            response.status(500).json({ error: 'message' })
-        }
         response.status(200).json(results.rows)
     })
 }
