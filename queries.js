@@ -30,6 +30,9 @@ const getUserById = (request, response) => {
             throw error
         }
         response.status(200).json(results.rows)
+        if (results.rows == []) {
+            response.status(500).json({ error: 'message' })
+        }
     })
 }
 
