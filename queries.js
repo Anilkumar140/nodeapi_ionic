@@ -29,7 +29,10 @@ const getUserById = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).json(results.rows)
+        if (results.rows == []) {
+            response.status(500).json({ error: 'Invalid Credentials' })
+        }
+        response.status(200).json({ "data": results.rows, "message": 'Login successful' });
     })
 }
 
