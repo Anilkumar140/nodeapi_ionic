@@ -28,6 +28,7 @@ const getUserById = (request, response) => {
     pool.query('SELECT * FROM users_data WHERE userid = $1 AND password =  $2', [userid, password], (error, results) => {
         if (error) {
             throw error
+            response.status(500).json({ error: 'Invalid Credentials' })
         }
         if (results.rows.length == 0) {
             response.status(500).json({ error: 'Invalid Credentials' })
