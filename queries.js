@@ -61,7 +61,7 @@ const createAddInfo = (request, response) => {
             throw error
         }
         // response.status(201).send(`User added with ID: ${results.insertId}`)
-        response.status(201).send({ 'message': `Addvertise Info Added` });
+        response.status(201).send({ 'message': `Advertise Info Added` });
 
     })
 }
@@ -99,4 +99,5 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
+    createAddInfo
 }
