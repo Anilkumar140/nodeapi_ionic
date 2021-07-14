@@ -48,7 +48,20 @@ const createUser = (request, response) => {
             throw error
         }
         // response.status(201).send(`User added with ID: ${results.insertId}`)
-        response.status(201).send(`Registration Successful`);
+        response.status(200).json({ 'message': `Registration Successful` });
+
+    })
+}
+
+const createAddInfo = (request, response) => {
+    const { name, imagepath, imagetype, imageurl } = request.body
+
+    pool.query('INSERT INTO users_data (name, imagepath, imagetype, imageurl) VALUES ($1,$2,$3,$4)', [name, imagepath, imagetype, imageurl], (error, results) => {
+        if (error) {
+            throw error
+        }
+        // response.status(201).send(`User added with ID: ${results.insertId}`)
+        response.status(201).send({ 'message': `Addvertise Info Added` });
 
     })
 }
