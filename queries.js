@@ -56,7 +56,7 @@ const createUser = (request, response) => {
 const createAddInfo = (request, response) => {
     const { name, imagepath, imagetype, imageurl } = request.body
 
-    pool.query('INSERT INTO users_data (name, imagepath, imagetype, imageurl) VALUES ($1,$2,$3,$4)', [name, imagepath, imagetype, imageurl], (error, results) => {
+    pool.query('INSERT INTO add_info (name, imagepath, imagetype, imageurl) VALUES ($1,$2,$3,$4)', [name, imagepath, imagetype, imageurl], (error, results) => {
         if (error) {
             throw error
         }
