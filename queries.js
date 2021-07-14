@@ -43,7 +43,7 @@ const getUserById = (request, response) => {
 const createUser = (request, response) => {
     const { userid, password, username } = request.body
 
-    pool.query('INSERT INTO users_data (userid, password, username) VALUES ($1,$2)', [userid, password, username], (error, results) => {
+    pool.query('INSERT INTO users_data (userid, password, username) VALUES ($1,$2,$3)', [userid, password, username], (error, results) => {
         if (error) {
             throw error
         }
