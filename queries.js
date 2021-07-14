@@ -27,7 +27,7 @@ const getUserById = (request, response) => {
     const { userid, password } = request.body
     pool.query('SELECT * FROM users_data WHERE userid = $1 AND password =  $2', [userid, password], (error, results) => {
         if (error) {
-           
+
             response.status(500).json({ error: 'Invalid Credentials' })
         }
         if (results.rows.length == 0) {
@@ -41,13 +41,15 @@ const getUserById = (request, response) => {
 }
 
 const createUser = (request, response) => {
-    const { id, userid, password } = request.body
+    const { userid, password, username } = request.body
 
-    pool.query('INSERT INTO users_data (userid, password) VALUES ($1,$2)', [userid, password], (error, results) => {
+    pool.query('INSERT INTO users_data (userid, password, username) VALUES ($1,$2)', [userid, password, username], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`User added with ID: ${results.insertId}`)
+        // response.status(201).send(`User added with ID: ${results.insertId}`)
+        response.status(201).send(`Registration Successful`);
+
     })
 }
 

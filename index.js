@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const db = require('./queries')
 var cors = require('cors');
+require('dotenv').config()
 
 app.use(bodyParser.json())
 app.use(
