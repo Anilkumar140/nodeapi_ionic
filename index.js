@@ -24,12 +24,12 @@ app.get('/', (request, response) => {
 })
 
 
-app.get('/users', db.getUsers)
-app.post('/login', db.getUserById)
-app.post('/createinfo', db.createAddInfo)
-app.post('/users', db.createUser)
-app.put('/users/:id', db.updateUser)
-app.delete('/users/:id', db.deleteUser)
+app.get('/api/users', db.getUsers)
+app.post('/api/login', db.getUserById)
+app.post('/api/createinfo', db.createAddInfo)
+app.post('/api/users', db.createUser)
+app.put('/api/users/:id', db.updateUser)
+app.delete('/api/users/:id', db.deleteUser)
 
 var server = app.listen(process.env.PORT || 3000, () => {
   console.log('Server is started on 127.0.0.1:' + (process.env.PORT || 3000))
