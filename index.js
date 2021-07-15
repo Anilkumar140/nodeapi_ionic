@@ -25,6 +25,7 @@ app.get('/', (request, response) => {
 
 
 app.get('/api/users', db.getUsers)
+app.post('/api/getadinfos', db.getAdInfoByType)
 app.post('/api/login', db.getUserById)
 app.post('/api/createinfo', db.createAddInfo)
 app.post('/api/users', db.createUser)

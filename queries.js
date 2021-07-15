@@ -40,6 +40,25 @@ const getUserById = (request, response) => {
     })
 }
 
+const getAdInfoByType = (request, response) => {
+    // const userid = parseInt(request.body.userid)
+    // const password = parseInt(request.body.password)
+    const { imagetype  } = request.body
+    pool.query('SELECT * FROM add_info WHERE imagetype  = $1 ', [imagetype ], (error, results) => {
+        if (error) {
+
+            response.status(500).json({ error: 'not found' })
+        }
+        if (results.rows.length == 0) {
+            response.status(500).json({ error: 'not found' })
+        }
+        else {
+            response.status(200).json({ "data": results.rows });
+        }
+
+    })
+}
+
 const createUser = (request, response) => {
     const { userid, password, username } = request.body
 
@@ -99,5 +118,6 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
-    createAddInfo
+    createAddInfo,
+    getAdInfoByType
 }
