@@ -41,8 +41,7 @@ const getUserById = (request, response) => {
 }
 
 const getAdInfoByType = (request, response) => {
-    // const userid = parseInt(request.body.userid)
-    // const password = parseInt(request.body.password)
+
     const { imagetype  } = request.body
     pool.query('SELECT * FROM add_info WHERE imagetype  = $1 ', [imagetype ], (error, results) => {
         if (error) {
@@ -53,7 +52,7 @@ const getAdInfoByType = (request, response) => {
             response.status(500).json({ error: 'not found' })
         }
         else {
-            response.status(200).json({ "data": results.rows });
+            response.status(200).json( results.rows );
         }
 
     })
