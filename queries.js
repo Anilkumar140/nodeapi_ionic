@@ -112,9 +112,9 @@ const deleteUser = (request, response) => {
 }
 
 const addToWishList = (request, response) => {
-    const { name, imagepath, imagetype, imageurl } = request.body
+    const { id,name, imagepath, imagetype, imageurl } = request.body
 
-    pool.query('INSERT INTO wishlist (name, imagepath, imagetype, imageurl) VALUES ($1,$2,$3,$4)', [name, imagepath, imagetype, imageurl], (error, results) => {
+    pool.query('INSERT INTO wishlist (id,name, imagepath, imagetype, imageurl) VALUES ($1,$2,$3,$4,$5)', [id,name, imagepath, imagetype, imageurl], (error, results) => {
         if (error) {
             throw error
         }
@@ -127,7 +127,7 @@ const addToWishList = (request, response) => {
 const getWishListS = (request, response) => {
     const id = parseInt(request.params.id)
 
-    pool.query('SELECT wishlist.name, wishlist.imagetype, wishlist.imagepath , wishlist.imageurl FROM wishlist JOIN users_data ON wishlist.id =  users_data.id NWHERE wishlist.id = $1', [id], (error, results) => {
+    pool.query('SELECT wishlist.name, wishlist.imagetype, wishlist.imagepath , wishlist.imageurl FROM wishlist JOIN users_data ON wishlist.id =  users_data.id WHERE wishlist.id = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
