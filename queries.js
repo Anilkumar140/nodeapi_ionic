@@ -111,6 +111,30 @@ const deleteUser = (request, response) => {
     })
 }
 
+const addToWishList = (request, response) => {
+    const { name, imagepath, imagetype, imageurl } = request.body
+
+    pool.query('INSERT INTO wishlist (name, imagepath, imagetype, imageurl) VALUES ($1,$2,$3,$4)', [name, imagepath, imagetype, imageurl], (error, results) => {
+        if (error) {
+            throw error
+        }
+        // response.status(201).send(`User added with ID: ${results.insertId}`)
+        response.status(201).send({ 'message': `Added To WishList` });
+
+    })
+}
+
+const getWishListS = (request, response) => {
+    const id = parseInt(request.params.id)
+
+    pool.query('SELECT wishlist.name, wishlist.imagetype, wishlist.imagepath , wishlist.imageurl FROM wishlist JOIN users_data ON wishlist.id =  users_data.id NWHERE wishlist.id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  } 
+
 module.exports = {
     getUsers,
     getUserById,
@@ -118,5 +142,7 @@ module.exports = {
     updateUser,
     deleteUser,
     createAddInfo,
-    getAdInfoByType
+    getAdInfoByType,
+    addToWishList,
+    getWishListS
 }
